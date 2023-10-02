@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS VITA;
-CREATE DATABASE IF NOT EXISTS VITA;
+DROP DATABASE IF EXISTS vita;
+CREATE DATABASE IF NOT EXISTS vita;
 
 
-USE VITA ;
+USE vita ;
 
 CREATE TABLE IF NOT EXISTS Hospital (
   Id INT NOT NULL AUTO_INCREMENT,
@@ -60,8 +60,8 @@ CREATE TABLE IF NOT EXISTS Hardware(
   UsoMemoria VARCHAR(255),
   TempMemoria VARCHAR(255),
   FreqMemoria VARCHAR(255),
-  TotalDisco VARCHAR(255),
-  UsoDisco VARCHAR(255),
+  ArmazenamentoTotal VARCHAR(255),
+  ArmazenamentoLivre VARCHAR(255),
   PRIMARY KEY (id, FkMaquina),
   FOREIGN KEY (FkMaquina) REFERENCES Maquina (Id)
 ) AUTO_INCREMENT = 500;
@@ -95,3 +95,5 @@ INSERT INTO FUNCIONARIO VALUES
 DESC MAQUINA;
 INSERT INTO MAQUINA VALUES (null,200,"Maquina 1 Atendimento","David");
 select * from MAQUINA;
+
+select * from hardware;
