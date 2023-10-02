@@ -44,8 +44,8 @@ CREATE TABLE IF NOT EXISTS Funcionario (
 CREATE TABLE IF NOT EXISTS Maquina (
   Id INT NOT NULL AUTO_INCREMENT,
   FkEmpresa INT NOT NULL,
-  Apelido VARCHAR(255) NOT NULL,
-  Responsavel VARCHAR(255) NOT NULL,
+  Apelido VARCHAR(255),
+  Responsavel VARCHAR(255),
   PRIMARY KEY (Id),
   FOREIGN KEY (FkEmpresa) REFERENCES Hospital (Id)
 )AUTO_INCREMENT = 400;
@@ -54,14 +54,14 @@ CREATE TABLE IF NOT EXISTS Maquina (
 CREATE TABLE IF NOT EXISTS Hardware(
   Id INT NOT NULL AUTO_INCREMENT,
   FkMaquina INT NOT NULL,
-  UsoProcessador VARCHAR(255) NOT NULL,
-  TempProcessador VARCHAR(255) NOT NULL,
-  FreqProcessador VARCHAR(255) NOT NULL,
-  UsoMemoria VARCHAR(255) NOT NULL,
-  TempMemoria VARCHAR(255) NOT NULL,
-  FreqMemoria VARCHAR(255) NOT NULL,
-  TotalDisco VARCHAR(255) NOT NULL,
-  UsoDisco VARCHAR(255) NOT NULL,
+  UsoProcessador VARCHAR(255),
+  TempProcessador VARCHAR(255),
+  FreqProcessador VARCHAR(255),
+  UsoMemoria VARCHAR(255),
+  TempMemoria VARCHAR(255),
+  FreqMemoria VARCHAR(255),
+  TotalDisco VARCHAR(255),
+  UsoDisco VARCHAR(255),
   PRIMARY KEY (id, FkMaquina),
   FOREIGN KEY (FkMaquina) REFERENCES Maquina (Id)
 ) AUTO_INCREMENT = 500;
@@ -70,8 +70,8 @@ CREATE TABLE IF NOT EXISTS Hardware(
 CREATE TABLE IF NOT EXISTS HistoricoIncidentes (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   FkMaquina INT NOT NULL,
-  Componente VARCHAR(255) NOT NULL,
-  DtIncidente DATETIME NOT NULL,
+  Componente VARCHAR(255),
+  DtIncidente DATETIME,
   FOREIGN KEY (FkMaquina) REFERENCES Maquina (Id)
 ) AUTO_INCREMENT = 600;
 
