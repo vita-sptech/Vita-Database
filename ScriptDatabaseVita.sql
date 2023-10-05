@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS Processo (
 Id INT primary key NOT NULL auto_increment,
 FkMaquina INT NOT NULL,
 Nome VARCHAR (255),
-dtCaptura DATETIME,
+dtRegistro DATETIME,
 Threads INT,
 usoMemoriaRam VARCHAR(255),
 FOREIGN KEY (FkMaquina) REFERENCES Maquina (Id)
@@ -79,8 +79,9 @@ FOREIGN KEY (FkMaquina) REFERENCES Maquina (Id)
 CREATE TABLE IF NOT EXISTS Disco (
 Id INT primary key NOT NULL auto_increment,
 FkMaquina INT NOT NULL,
-dtCaptura DATETIME,
-ArmazenamentoTotal INT,
+Modelo VARCHAR(255),
+dtRegistro DATETIME,
+ArmazenamentoTotal VARCHAR(255),
 ArmazenamentoLivre VARCHAR(255),
 FOREIGN KEY (FkMaquina) REFERENCES Maquina (Id)
 );
@@ -115,4 +116,8 @@ INSERT INTO FUNCIONARIO VALUES
 -- DESC MAQUINA;
 INSERT INTO MAQUINA VALUES (null,200,"Maquina 1 Atendimento","David");
 -- select * from MAQUINA;
+
+-- select * from disco
+
+
 
