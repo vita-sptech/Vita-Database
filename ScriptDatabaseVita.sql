@@ -5,85 +5,93 @@ CREATE DATABASE IF NOT EXISTS vita;
 USE vita ;
 
 CREATE TABLE IF NOT EXISTS Hospital (
-  Id INT NOT NULL AUTO_INCREMENT,
-  Nome VARCHAR(255) NOT NULL,
-  Telefone VARCHAR(255) NOT NULL,
-  Email VARCHAR(255) NOT NULL,
-  CNPJ VARCHAR(255) NOT NULL,
-  CodHospital VARCHAR(255) NOT NULL,
-  PRIMARY KEY (Id)
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(255) NOT NULL,
+  telefone VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  cnpj VARCHAR(255) NOT NULL,
+  codHospital VARCHAR(255) NOT NULL
 )AUTO_INCREMENT = 200;
 
 
 CREATE TABLE IF NOT EXISTS Endereco (
-  Id INT NOT NULL AUTO_INCREMENT,
-  FkHospital INT NOT NULL,
-  Estado VARCHAR(255) NOT NULL,
-  Cidade VARCHAR(255) NOT NULL,
-  CEP VARCHAR(255) NOT NULL,
-  Logradouro VARCHAR(255) NOT NULL,
-  NumEndereco VARCHAR(255) NOT NULL,
-  Complemento VARCHAR(255) NULL,
-  FOREIGN KEY (FkHospital) REFERENCES Hospital (Id),
-  PRIMARY KEY (Id)
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  fkHospital INT NOT NULL,
+  estado VARCHAR(255) NOT NULL,
+  cidade VARCHAR(255) NOT NULL,
+  cep VARCHAR(255) NOT NULL,
+  logradouro VARCHAR(255) NOT NULL,
+  numEndereco VARCHAR(255) NOT NULL,
+  complemento VARCHAR(255) NULL,
+  FOREIGN KEY (fkHospital) REFERENCES Hospital (id)
   )AUTO_INCREMENT = 100;
 
 CREATE TABLE IF NOT EXISTS Funcionario (
-  Id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  FkHospital INT NOT NULL,
-  Email VARCHAR(255) NOT NULL,
-  Senha VARCHAR(255) NOT NULL,
-  Nome VARCHAR(255) NOT NULL,
-  CPF CHAR(255) NOT NULL,
-  Telefone CHAR(255) NOT NULL,
-  Funcao VARCHAR(255) NOT NULL,
-  FOREIGN KEY (FkHospital) REFERENCES Hospital (Id)
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  fkHospital INT NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  senha VARCHAR(255) NOT NULL,
+  nome VARCHAR(255) NOT NULL,
+  cpf CHAR(255) NOT NULL,
+  telefone CHAR(255) NOT NULL,
+  funcao VARCHAR(255) NOT NULL,
+  FOREIGN KEY (fkHospital) REFERENCES Hospital (id)
 )AUTO_INCREMENT = 300;
 
 
 CREATE TABLE IF NOT EXISTS Maquina (
-  Id INT NOT NULL AUTO_INCREMENT,
-  FkEmpresa INT NOT NULL,
-  Apelido VARCHAR(255),
-  Responsavel VARCHAR(255),
-  PRIMARY KEY (Id),
-  FOREIGN KEY (FkEmpresa) REFERENCES Hospital (Id)
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  fkEmpresa INT NOT NULL,
+  apelido VARCHAR(255),
+  responsavel VARCHAR(255),
+  FOREIGN KEY (fkEmpresa) REFERENCES Hospital (id)
 )AUTO_INCREMENT = 400;
 
-
-CREATE TABLE IF NOT EXISTS Hardware(
-  Id INT NOT NULL AUTO_INCREMENT,
-  FkMaquina INT NOT NULL,
-  UsoProcessador VARCHAR(255),
-  TempProcessador VARCHAR(255),
-  FreqProcessador VARCHAR(255),
-  UsoMemoria VARCHAR(255),
-  TempMemoria VARCHAR(255),
-  FreqMemoria VARCHAR(255),
-  ArmazenamentoTotal VARCHAR(255),
-  ArmazenamentoLivre VARCHAR(255),
-  PRIMARY KEY (id, FkMaquina),
-  FOREIGN KEY (FkMaquina) REFERENCES Maquina (Id)
-) AUTO_INCREMENT = 500;
-
-CREATE TABLE IF NOT EXISTS Processo (
-Id INT primary key NOT NULL auto_increment,
-FkMaquina INT NOT NULL,
-Nome VARCHAR (255),
+CREATE TABLE IF NOT EXISTS processoRegistro (
+id INT primary key NOT NULL auto_increment,
+fkMaquina INT NOT NULL,
+nome VARCHAR (255),
 dtRegistro DATETIME,
-Threads INT,
+threads INT,
 usoMemoriaRam VARCHAR(255),
-FOREIGN KEY (FkMaquina) REFERENCES Maquina (Id)
+FOREIGN KEY (fkMaquina) REFERENCES Maquina (id)
 );
 
-CREATE TABLE IF NOT EXISTS Disco (
-Id INT primary key NOT NULL auto_increment,
-FkMaquina INT NOT NULL,
-Modelo VARCHAR(255),
+CREATE TABLE IF NOT EXISTS discoRegistro (
+id INT primary key auto_increment,
+fkMaquina INT NOT NULL,
+modelo VARCHAR(255),
 dtRegistro DATETIME,
-ArmazenamentoTotal VARCHAR(255),
-ArmazenamentoLivre VARCHAR(255),
-FOREIGN KEY (FkMaquina) REFERENCES Maquina (Id)
+armazenamentoTotal VARCHAR(255),
+armazenamentoLivre VARCHAR(255),
+FOREIGN KEY (fkMaquina) REFERENCES Maquina (id)
+);
+
+CREATE TABLE IF NOT EXISTS cpuRegistro (
+id INT primary key auto_increment,
+fkMaquina INT NOT NULL,
+dtRegistro DATETIME,
+temperatura DECIMAL(10,2),
+usoPorcentagem DECIMAL(10,2),
+FOREIGN KEY (fkMaquina) REFERENCES Maquina (id)
+);
+
+CREATE TABLE IF NOT EXISTS memoriaRegistro(
+id INT primary key auto_increment,
+fkMaquina int,
+dtRegistro DATETIME,
+quantidadeoTotal VARCHAR(45),
+usoMemoria VARCHAR(45),
+FOREIGN KEY (fkMaquina) references Maquina (id)
+);
+
+CREATE TABLE IF NOT EXISTS sistemaRegistro(
+id INT PRIMARY KEY auto_increment,
+fkMaquina int,
+dtRegistro DATETIME,
+tempoDeAtividadeSistema VARCHAR(45),
+qtdDispositivosUsb INT,
+FOREIGN KEY (fkMaquina) references Maquina (id)
 );
 
 
@@ -95,7 +103,6 @@ CREATE TABLE IF NOT EXISTS HistoricoIncidentes (
   DtIncidente DATETIME,
   FOREIGN KEY (FkMaquina) REFERENCES Maquina (Id)
 );
-
 
 -- DESC HOSPITAL;
 INSERT INTO HOSPITAL VALUES 
