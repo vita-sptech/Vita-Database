@@ -60,7 +60,7 @@ FOREIGN KEY (fkMaquina) REFERENCES Maquina (id)
 CREATE TABLE IF NOT EXISTS discoRegistro (
 id INT primary key auto_increment,
 fkMaquina INT NOT NULL,
-modelo VARCHAR(255),
+modelo VARCHAR(255),		
 dtRegistro DATETIME,
 armazenamentoTotal VARCHAR(255),
 armazenamentoLivre VARCHAR(255),
@@ -71,8 +71,8 @@ CREATE TABLE IF NOT EXISTS cpuRegistro (
 id INT primary key auto_increment,
 fkMaquina INT NOT NULL,
 dtRegistro DATETIME,
-temperatura DECIMAL(10,2),
-usoPorcentagem DECIMAL(10,2),
+temperatura VARCHAR(50),
+usoPorcentagem VARCHAR(50),
 FOREIGN KEY (fkMaquina) REFERENCES Maquina (id)
 );
 
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS memoriaRegistro(
 id INT primary key auto_increment,
 fkMaquina int,
 dtRegistro DATETIME,
-quantidadeoTotal VARCHAR(45),
+qtdTotal VARCHAR(45),
 usoMemoria VARCHAR(45),
 FOREIGN KEY (fkMaquina) references Maquina (id)
 );
@@ -124,7 +124,11 @@ INSERT INTO FUNCIONARIO VALUES
 INSERT INTO MAQUINA VALUES (null,200,"Maquina 1 Atendimento","David");
 -- select * from MAQUINA;
 
--- select * from disco
+select * from discoregistro;
+
+select * from cpuregistro;
+
+select * from memoriaregistro;
 
 
 
