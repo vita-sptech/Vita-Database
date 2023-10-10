@@ -130,5 +130,6 @@ select * from cpuregistro;
 
 select * from memoriaregistro;
 
+select * from sistemaregistro;
 
 
