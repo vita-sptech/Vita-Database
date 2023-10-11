@@ -126,18 +126,20 @@ INSERT INTO MAQUINA VALUES ("FB3E6C80-DC2E-11EA-8327-38E31E5A3200",200,"Maquina 
 
 select * from discoregistro;
 
-select * from cpuregistro;
+select * from processoregistro order by dtRegistro desc limit 5;
 
-select * from memoriaregistro;
+select * from cpuregistro order by dtRegistro desc limit 5;
+
+select * from memoriaregistro order by dtRegistro desc limit 5;
 
 select * from sistemaregistro;
 
 -- SELECT * FROM MAQUINA M JOIN HOSPITAL H ON M.FKHOSPITAL = H.ID JOIN FUNCIONARIO F ON H.ID = F.FKHOSPITAL WHERE F.EMAIL = "leo@gmail.com" AND F.SENHA = "senha@123";
-SELECT * FROM MAQUINA WHERE UUID = 400;
+
 SELECT * FROM FUNCIONARIO WHERE email = "leo@gmail.com" AND senha = "senha@123";
 
 desc maquina;
 
- -- delete from maquina where uuid = 'FB3E6C80-DC2E-11EA-8327-38E31E5A3200'
+ delete from maquina where uuid = 'FB3E6C80-DC2E-11EA-8327-38E31E5A3200';
 
-
+select * from maquina;
