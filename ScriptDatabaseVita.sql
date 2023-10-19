@@ -38,6 +38,19 @@ CREATE TABLE IF NOT EXISTS Funcionario (
 )AUTO_INCREMENT = 300;
 
 
+CREATE TABLE IF NOT EXISTS ParametrosAlerta(
+id INT PRIMARY KEY auto_increment,
+fkHospital INT NOT NULL,
+maxTempProcessador VARCHAR(50),
+maxUsoProcessador VARCHAR(50),
+maxUsoMemoria VARCHAR(50),
+maxUsoDisco VARCHAR(50),
+maxTempoDeAtividade VARCHAR(50),
+minQtdUsb VARCHAR(50),
+processoMaxUsoRam VARCHAR(50),
+FOREIGN KEY (fkHospital) references Hospital (id)
+);
+
 CREATE TABLE IF NOT EXISTS Maquina (
   uuid VARCHAR(255) PRIMARY KEY  ,
   fkHospital INT NOT NULL,
@@ -77,7 +90,7 @@ FOREIGN KEY (fkMaquina) REFERENCES Maquina (uuid)
 
 CREATE TABLE IF NOT EXISTS memoriaRegistro(
 id INT primary key auto_increment,
-fkMaquina VARCHAR(255),
+fkMaquina VARCHAR(255) NOT NULL,
 dtRegistro DATETIME,
 qtdTotal VARCHAR(45),
 usoMemoria VARCHAR(45),
@@ -86,7 +99,7 @@ FOREIGN KEY (fkMaquina) references Maquina (uuid)
 
 CREATE TABLE IF NOT EXISTS sistemaRegistro(
 id INT PRIMARY KEY auto_increment,
-fkMaquina VARCHAR(255),
+fkMaquina VARCHAR(255) NOT NULL,
 dtRegistro DATETIME,
 tempoDeAtividadeSistema VARCHAR(45),
 qtdDispositivosUsb INT,
@@ -95,12 +108,24 @@ FOREIGN KEY (fkMaquina) references Maquina (uuid)
 
 
 
-CREATE TABLE IF NOT EXISTS HistoricoIncidentes (
+CREATE TABLE IF NOT EXISTS ocorrencias (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   FkMaquina VARCHAR(255) NOT NULL,
   Componente VARCHAR(255),
-  DtIncidente DATETIME,
+  DtOcorrencia DATETIME,
   FOREIGN KEY (FkMaquina) REFERENCES Maquina (uuid)
+);
+
+CREATE TABLE IF NOT EXISTS Chamado(
+id INT PRIMARY KEY auto_increment,
+fkMaquina VARCHAR(255) NOT NULL,
+fkCriador int NOT NULL,
+titulo VARCHAR(100),
+descricao VARCHAR(255),
+setor VARCHAR(255),
+isClosed BOOLEAN,
+foreign key (fkMaquina) references Maquina(UUID),
+foreign key (fkCriador) references funcionario (id)
 );
 
 -- DESC HOSPITAL;
@@ -132,7 +157,7 @@ select * from cpuregistro order by dtRegistro desc limit 5;
 
 select * from memoriaregistro order by dtRegistro desc limit 5;
 
-select * from sistemaregistro;
+select * from sistemaregistro order by dtRegistro desc limit 5;
 
 -- SELECT * FROM MAQUINA M JOIN HOSPITAL H ON M.FKHOSPITAL = H.ID JOIN FUNCIONARIO F ON H.ID = F.FKHOSPITAL WHERE F.EMAIL = "leo@gmail.com" AND F.SENHA = "senha@123";
 
@@ -142,4 +167,3 @@ desc maquina;
 
  delete from maquina where uuid = 'FB3E6C80-DC2E-11EA-8327-38E31E5A3200';
 
-select * from maquina;
