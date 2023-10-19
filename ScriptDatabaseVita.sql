@@ -119,13 +119,13 @@ CREATE TABLE IF NOT EXISTS ocorrencias (
 CREATE TABLE IF NOT EXISTS Chamado(
 id INT PRIMARY KEY auto_increment,
 fkMaquina VARCHAR(255) NOT NULL,
-fkCriador int NOT NULL,
+fkResponsavel int NOT NULL,
 titulo VARCHAR(100),
 descricao VARCHAR(255),
 setor VARCHAR(255),
 isClosed BOOLEAN,
 foreign key (fkMaquina) references Maquina(UUID),
-foreign key (fkCriador) references funcionario (id)
+foreign key (fkResponsavel) references funcionario (id)
 );
 
 -- DESC HOSPITAL;
