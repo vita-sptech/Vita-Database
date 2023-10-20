@@ -125,45 +125,6 @@ descricao VARCHAR(255),
 setor VARCHAR(255),
 isClosed BOOLEAN,
 foreign key (fkMaquina) references Maquina(UUID),
-foreign key (fkResponsavel) references funcionario (id)
+foreign key (fkResponsavel) references Funcionario (id)
 );
-
--- DESC HOSPITAL;
-INSERT INTO HOSPITAL VALUES 
-(NULL,"Alberto Einstein", "11961707443","alberteinstein@hospital.com","60.765.823/0001-30","824fd9d8-6134-11ee-8c99-0242ac120002"),
-(NULL,"HOSPITAL MUNICIPAL NOSSA SENHORA DA LAPA", "3438131231","hospitalapa@hospital.com","18.278.069/0001-47","7e6de880-6136-11ee-8c99-0242ac120002");
-SELECT * FROM HOSPITAL;
-
--- DESC ENDERECO;
-INSERT INTO ENDERECO VALUES
-(NULL,200,"Sao Paulo","Sao Paulo","01414952","Rua do hospital albert eintein","900","Do outro lado da rua é o outro lado da rua do hospital"),
-(NULL,201,"Sao Paulo","Sao Paulo","01445652","Rua do hospital da lapa","1452","");
-SELECT * FROM ENDERECO;
-
--- DESC FUNCIONARIO;
-INSERT INTO FUNCIONARIO VALUES
-(null,200,"lucassantos@gmail.com","senha@123","Lucão","12312312"	,"Gerente"),
-(null,200,"leo@gmail.com","senha@123","Leo","12312312","Suporte");
-
--- DESC MAQUINA;
-INSERT INTO MAQUINA VALUES ("FB3E6C80-DC2E-11EA-8327-38E31E5A3200",200,"Maquina 1 Atendimento","David");
--- select * from MAQUINA;
-
-select * from discoregistro;
-
-select * from processoregistro order by dtRegistro desc limit 5;
-
-select * from cpuregistro order by dtRegistro desc limit 5;
-
-select * from memoriaregistro order by dtRegistro desc limit 5;
-
-select * from sistemaregistro order by dtRegistro desc limit 5;
-
--- SELECT * FROM MAQUINA M JOIN HOSPITAL H ON M.FKHOSPITAL = H.ID JOIN FUNCIONARIO F ON H.ID = F.FKHOSPITAL WHERE F.EMAIL = "leo@gmail.com" AND F.SENHA = "senha@123";
-
-SELECT * FROM FUNCIONARIO WHERE email = "leo@gmail.com" AND senha = "senha@123";
-
-desc maquina;
-
- delete from maquina where uuid = 'FB3E6C80-DC2E-11EA-8327-38E31E5A3200';
 
