@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS Maquina (
   FOREIGN KEY (fkHospital) REFERENCES Hospital (id)
 )AUTO_INCREMENT = 400;
 
-CREATE TABLE IF NOT EXISTS processoRegistro (
+CREATE TABLE IF NOT EXISTS ProcessoRegistro (
 id INT primary key NOT NULL auto_increment,
 fkMaquina  VARCHAR(255) NOT NULL,
 nome VARCHAR (255),
@@ -69,7 +69,7 @@ usoMemoriaRam VARCHAR(255),
 FOREIGN KEY (fkMaquina) REFERENCES Maquina (uuid)
 );
 
-CREATE TABLE IF NOT EXISTS discoRegistro (
+CREATE TABLE IF NOT EXISTS DiscoRegistro (
 id INT primary key auto_increment,
 fkMaquina VARCHAR(255) NOT NULL,
 modelo VARCHAR(255),		
@@ -79,7 +79,7 @@ armazenamentoLivre VARCHAR(255),
 FOREIGN KEY (fkMaquina) REFERENCES Maquina (uuid)
 );
 
-CREATE TABLE IF NOT EXISTS cpuRegistro (
+CREATE TABLE IF NOT EXISTS CpuRegistro (
 id INT primary key auto_increment,
 fkMaquina VARCHAR(255) NOT NULL,
 dtRegistro DATETIME,
@@ -88,7 +88,7 @@ usoPorcentagem VARCHAR(50),
 FOREIGN KEY (fkMaquina) REFERENCES Maquina (uuid)
 );
 
-CREATE TABLE IF NOT EXISTS memoriaRegistro(
+CREATE TABLE IF NOT EXISTS MemoriaRegistro(
 id INT primary key auto_increment,
 fkMaquina VARCHAR(255) NOT NULL,
 dtRegistro DATETIME,
@@ -97,7 +97,7 @@ usoMemoria VARCHAR(45),
 FOREIGN KEY (fkMaquina) references Maquina (uuid)
 );
 
-CREATE TABLE IF NOT EXISTS sistemaRegistro(
+CREATE TABLE IF NOT EXISTS SistemaRegistro(
 id INT PRIMARY KEY auto_increment,
 fkMaquina VARCHAR(255) NOT NULL,
 dtRegistro DATETIME,
@@ -108,12 +108,12 @@ FOREIGN KEY (fkMaquina) references Maquina (uuid)
 
 
 
-CREATE TABLE IF NOT EXISTS ocorrencias (
+CREATE TABLE IF NOT EXISTS Ocorrencias (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  FkMaquina VARCHAR(255) NOT NULL,
-  Componente VARCHAR(255),
-  DtOcorrencia DATETIME,
-  FOREIGN KEY (FkMaquina) REFERENCES Maquina (uuid)
+  fkMaquina VARCHAR(255) NOT NULL,
+  componente VARCHAR(255),
+  dtOcorrencia DATETIME,
+  FOREIGN KEY (fkMaquina) REFERENCES Maquina (uuid)
 );
 
 CREATE TABLE IF NOT EXISTS Chamado(
@@ -124,7 +124,7 @@ titulo VARCHAR(100),
 descricao VARCHAR(255),
 setor VARCHAR(255),
 isClosed BOOLEAN,
-foreign key (fkMaquina) references Maquina(UUID),
+foreign key (fkMaquina) references Maquina(uuid),
 foreign key (fkResponsavel) references Funcionario (id)
 );
 
