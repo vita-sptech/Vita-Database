@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS Ocorrencias (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   fkMaquina VARCHAR(255) NOT NULL,
   componente VARCHAR(255),
-  categoria VARCHAR(255) constraint chkCategoria CHECK(categoria IN ('hardware','software')),
+  categoria VARCHAR(255) constraint chkCategoriaOcorrencia CHECK(categoria IN ('hardware','software')),
   descricao VARCHAR(255),
   dtOcorrencia DATETIME,
   FOREIGN KEY (fkMaquina) REFERENCES Maquina (uuid)
