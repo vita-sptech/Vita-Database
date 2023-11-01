@@ -12,7 +12,8 @@ CREATE TABLE IF NOT EXISTS Hospital (
   cnpj VARCHAR(255) NOT NULL,
   codHospital VARCHAR(255) NOT NULL,
   site VARCHAR(255) NOT NULL,
-  categoria VARCHAR(10) NOT NULL CONSTRAINT chkCategoria CHECK(categoria IN('Publico', 'Particular'))
+  categoria VARCHAR(10) NOT NULL, 
+  CONSTRAINT chkCategoria CHECK(categoria IN('Publico', 'Particular'))
 ) AUTO_INCREMENT = 200;
 
 CREATE TABLE IF NOT EXISTS Endereco (
@@ -49,6 +50,10 @@ maxUsoDisco VARCHAR(50),
 maxTempoDeAtividade VARCHAR(50),
 minQtdUsb VARCHAR(50),
 processoMaxUsoRam VARCHAR(50),
+tempoParaAlertaUsoProcessador VARCHAR(50),
+tempoParaAlertaUsoMemoria VARCHAR(50),
+tempoParaAlertaTempProcessador VARCHAR(50),
+tempoParaAlertaUsoRamProcessos VARCHAR(50),
 FOREIGN KEY (fkHospital) references Hospital (id)
 );
 
