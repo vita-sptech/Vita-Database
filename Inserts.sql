@@ -12,3 +12,4 @@ INSERT INTO Endereco VALUES
 INSERT INTO Funcionario VALUES
 (null,200,"lucassantos@gmail.com","senha@123","Lucão","12312312"	,"Gerente"),
 (null,200,"leo@gmail.com","senha@123","Leo","12312312","Suporte");
+

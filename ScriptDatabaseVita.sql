@@ -60,7 +60,7 @@ FOREIGN KEY (fkHospital) references Hospital (id)
 CREATE TABLE IF NOT EXISTS Maquina (
   uuid VARCHAR(255) PRIMARY KEY  ,
   fkHospital INT NOT NULL,
-  apelido VARCHAR(255),
+  localidade VARCHAR(255),
   responsavel VARCHAR(255),
   FOREIGN KEY (fkHospital) REFERENCES Hospital (id)
 )AUTO_INCREMENT = 400;
