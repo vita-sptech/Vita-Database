@@ -10,6 +10,8 @@ INSERT INTO Endereco VALUES
 
 
 INSERT INTO Funcionario VALUES
-(null,200,"lucassantos@gmail.com","senha@123","Lucão","12312312"	,"Gerente"),
+(null,200,"lucassantos@gmail.com","senha@123","Lucão","12312312","Gerente"),
 (null,200,"leo@gmail.com","senha@123","Leo","12312312","Suporte");
 
+INSERT INTO ParametrosAlerta VALUES 
+(null,200,'75','98','1073741824','493039206400','50000','2','1073741824','120000','120000','120000','120000')
