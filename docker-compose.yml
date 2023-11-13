@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+  mysql:
+    container_name: vitadb
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: vitadbdocker
+      MYSQL_DATABASE: vita
+    volumes:
+      - ./init-scripts:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+volumes:
+ mysql_data:
