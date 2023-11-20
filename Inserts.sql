@@ -14,4 +14,6 @@ INSERT INTO Funcionario VALUES
 (null,200,"leo@gmail.com","senha@123","Leo","12312312","Suporte");
 
 INSERT INTO ParametrosAlerta VALUES 
-(null,200,'75','98','1073741824','493039206400','50000','2','1073741824','120000','120000','120000','120000')
+(null,200,'75','95','90','9126805504','172800','2','60','30');
+desc ParametrosAlerta;
+
