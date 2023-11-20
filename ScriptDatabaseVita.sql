@@ -111,13 +111,14 @@ FOREIGN KEY (fkMaquina) references Maquina (uuid)
 
 
 
-CREATE TABLE IF NOT EXISTS Ocorrencias (
+CREATE TABLE IF NOT EXISTS Ocorrencia (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   fkMaquina VARCHAR(255) NOT NULL,
-  componente VARCHAR(255),
-  categoria VARCHAR(255) constraint chkCategoriaOcorrencia CHECK(categoria IN ('hardware','software')),
-  descricao VARCHAR(255),
   dtOcorrencia DATETIME,
+  categoria VARCHAR(255) constraint chkCategoriaOcorrencia CHECK(categoria IN ('hardware','software')),
+  componente VARCHAR(255),
+  metrica VARCHAR(255),
+  descricao VARCHAR(255),
   FOREIGN KEY (fkMaquina) REFERENCES Maquina (uuid)
 );
 
