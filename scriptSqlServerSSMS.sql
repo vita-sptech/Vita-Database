@@ -1,7 +1,4 @@
-IF EXISTS (SELECT * FROM sys.databases WHERE name = N'vita')
-    DROP DATABASE vita;
-
-CREATE DATABASE vita;
+use vita;
 
 CREATE TABLE Hospital (
   id INT PRIMARY KEY IDENTITY(200,1),
@@ -47,11 +44,9 @@ CREATE TABLE ParametrosAlerta(
   maxUsoDisco NVARCHAR(50),
   maxTempoDeAtividade NVARCHAR(50),
   minQtdUsb NVARCHAR(50),
-  processoMaxUsoRam NVARCHAR(50),
-  tempoParaAlertaUsoProcessador NVARCHAR(50),
-  tempoParaAlertaUsoMemoria NVARCHAR(50),
-  tempoParaAlertaTempProcessador NVARCHAR(50),
-  tempoParaAlertaUsoRamProcessos NVARCHAR(50),
+  porcentagemMaximaRamProcesso NVARCHAR(50),
+  tempoParaAlertaSec NVARCHAR(50),
+ 
   FOREIGN KEY (fkHospital) REFERENCES Hospital (id)
 );
 
@@ -110,13 +105,14 @@ CREATE TABLE SistemaRegistro(
   FOREIGN KEY (fkMaquina) REFERENCES Maquina (uuid)
 );
 
-CREATE TABLE Ocorrencias (
+CREATE TABLE Ocorrencia (
   id INT PRIMARY KEY IDENTITY(1,1),
   fkMaquina NVARCHAR(255) NOT NULL,
+  dtOcorrencia DATETIME,
   componente NVARCHAR(255),
   categoria NVARCHAR(255),
+  metrica VARCHAR(255),
   descricao NVARCHAR(255),
-  dtOcorrencia DATETIME,
   FOREIGN KEY (fkMaquina) REFERENCES Maquina (uuid)
 );
 
@@ -167,3 +163,12 @@ VALUES
 (301, 200, 'leo@gmail.com', 'senha@123', 'Leo', '12312312', 'Suporte');
 
 SET IDENTITY_INSERT Funcionario OFF;
+
+SET IDENTITY_INSERT ParametrosAlerta ON;
+
+INSERT INTO ParametrosAlerta (id, fkHospital, maxTempProcessador, maxUsoProcessador, maxUsoMemoria, maxUsoDisco, maxTempoDeAtividade,minQtdUsb,porcentagemMaximaRamProcesso,tempoParaAlertaSec) VALUES 
+(1,200,'75','95','90','9126805504','172800','2','60','30');
+
+SET IDENTITY_INSERT ParametrosAlerta OFF;
+
+
